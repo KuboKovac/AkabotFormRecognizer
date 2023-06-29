@@ -1,0 +1,1427 @@
+﻿<Activity mc:Ignorable="sap sap2010 sads" x:Class="Main"
+ xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities"
+ xmlns:ap="clr-namespace:akaBot.Python;assembly=Aka.RPA.Python"
+ xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+ xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+ xmlns:moie="clr-namespace:Microsoft.Office.Interop.Excel;assembly=Microsoft.Office.Interop.Excel"
+ xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities"
+ xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json"
+ xmlns:rac="clr-namespace:RCA.Activities.Core;assembly=RCA.Activities.Core"
+ xmlns:ram="clr-namespace:RCA.Activities.Mail;assembly=RCA.Activities.Mail"
+ xmlns:rap="clr-namespace:RCA.Activities.Python;assembly=RCA.Activities.Python"
+ xmlns:s="clr-namespace:System;assembly=mscorlib"
+ xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger"
+ xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation"
+ xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation"
+ xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib"
+ xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib"
+ xmlns:sd="clr-namespace:System.Data;assembly=System.Data"
+ xmlns:snm="clr-namespace:System.Net.Mail;assembly=System"
+ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="InOut_Config" Type="InArgument(scg:Dictionary(x:String, x:String))" />
+  </x:Members>
+  <mva:VisualBasic.Settings>
+    <x:Null />
+  </mva:VisualBasic.Settings>
+  <sap2010:WorkflowViewState.IdRef>Main_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+      <x:String>Microsoft.VisualBasic.CompilerServices</x:String>
+      <x:String>System.Net</x:String>
+      <x:String>Microsoft.Office.Interop.Outlook</x:String>
+      <x:String>RCA.Activities.Core</x:String>
+      <x:String>akaBot.Python</x:String>
+      <x:String>Newtonsoft.Json.Linq</x:String>
+      <x:String>Newtonsoft.Json</x:String>
+      <x:String>Microsoft.Office.Interop.Excel</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualStudio.Services.Common</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>RCA.Activities.Core</AssemblyReference>
+      <AssemblyReference>Aka.RPA.Python</AssemblyReference>
+      <AssemblyReference>RCA.Activities.Excel</AssemblyReference>
+      <AssemblyReference>RCA.Activities.Java</AssemblyReference>
+      <AssemblyReference>RCA.Activities.Word</AssemblyReference>
+      <AssemblyReference>RCA.Activities.Browser</AssemblyReference>
+      <AssemblyReference>RCA.Activities.IE</AssemblyReference>
+      <AssemblyReference>RCA.Activities.Windows</AssemblyReference>
+      <AssemblyReference>RCA.Activities.Mail</AssemblyReference>
+      <AssemblyReference>RCA.Activities.GSuite</AssemblyReference>
+      <AssemblyReference>RCA.Activities.FTP</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
+      <AssemblyReference>System.Collections.Immutable</AssemblyReference>
+      <AssemblyReference>Microsoft.Office.Interop.Outlook</AssemblyReference>
+      <AssemblyReference>Newtonsoft.Json</AssemblyReference>
+      <AssemblyReference>Microsoft.Office.Interop.Excel</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Flowchart DisplayName="[731729440] Form Recognizer Flow Chart" sap2010:WorkflowViewState.IdRef="Flowchart_1">
+    <Flowchart.Variables>
+      <Variable x:TypeArguments="scg:Dictionary(x:String, scg:List(x:String))" Default="[new Dictionary(of String, List(of String))]" Name="AttachmentsAddresses" />
+      <Variable x:TypeArguments="x:String" Default="[&quot;Run &quot; + DateTime.Now().ToString.Replace(&quot;:&quot;, &quot;-&quot;).Replace(&quot;/&quot;,&quot;.&quot;)]" Name="RuntimeFolder" />
+    </Flowchart.Variables>
+    <Flowchart.StartNode>
+      <FlowStep x:Name="__ReferenceID3" sap2010:WorkflowViewState.IdRef="FlowStep_6">
+        <rac:InvokeWorkflowFile ContinueOnError="{x:Null}" WorkflowTimeout="{x:Null}" sap2010:Annotation.AnnotationText="Invokes ReadConfig file and reads configuration,&#xA;    - configuration is stored in InOut_Config argument&#xA;   - config file path can be modified by changing In_configPath argument of ReadConfig.xaml file" DisplayName="[611907669] Invoke ReadConf.xaml" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" WorkflowFileName="ReadConfig.xaml">
+          <rac:InvokeWorkflowFile.Arguments>
+            <InArgument x:TypeArguments="x:String" x:Key="In_ConfigPath">config.xlsx</InArgument>
+            <OutArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="Out_Config">[InOut_Config]</OutArgument>
+          </rac:InvokeWorkflowFile.Arguments>
+        </rac:InvokeWorkflowFile>
+        <FlowStep.Next>
+          <FlowStep x:Name="__ReferenceID4" sap2010:WorkflowViewState.IdRef="FlowStep_8">
+            <Sequence sap2010:Annotation.AnnotationText="Creates directories necessary for program execution in location specified in cofiguration" DisplayName="[235901948] Create Runtime Directories" sap2010:WorkflowViewState.IdRef="Sequence_60">
+              <TryCatch DisplayName="[811194987] Try Catch" sap2010:WorkflowViewState.IdRef="TryCatch_7">
+                <TryCatch.Try>
+                  <Sequence DisplayName="[816172313] Sequence" sap2010:WorkflowViewState.IdRef="Sequence_61">
+                    <rac:CreateDirectory ContinueOnError="{x:Null}" DisplayName="[314657557] Downloads dir" sap2010:WorkflowViewState.IdRef="CreateDirectory_1" Path="[InOut_Config(&quot;AutomationDirectory&quot;) + &quot;\&quot; + RuntimeFolder + &quot;\&quot; + &quot;Downloads&quot;]" />
+                    <rac:CreateDirectory ContinueOnError="{x:Null}" DisplayName="[019152397] JSON Directory" sap2010:WorkflowViewState.IdRef="CreateDirectory_3" Path="[InOut_Config(&quot;AutomationDirectory&quot;) + &quot;\&quot; + RuntimeFolder + &quot;\&quot; + &quot;Json&quot;]" />
+                    <rac:CreateDirectory ContinueOnError="{x:Null}" DisplayName="[412952732] Processed dir" sap2010:WorkflowViewState.IdRef="CreateDirectory_2" Path="[InOut_Config(&quot;AutomationDirectory&quot;) + &quot;\&quot; + RuntimeFolder + &quot;\&quot; + &quot;ProcessedFiles&quot;]" />
+                  </Sequence>
+                </TryCatch.Try>
+                <TryCatch.Catches>
+                  <Catch x:TypeArguments="s:Exception" sap2010:WorkflowViewState.IdRef="Catch`1_7">
+                    <ActivityAction x:TypeArguments="s:Exception">
+                      <ActivityAction.Argument>
+                        <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                      </ActivityAction.Argument>
+                      <Sequence DisplayName="[837525897] Sequence" sap2010:WorkflowViewState.IdRef="Sequence_62">
+                        <rac:LogMessage DisplayName="[832191399] Log Message" sap2010:WorkflowViewState.IdRef="LogMessage_29" Level="Error" Message="[&quot;Something went wrong!  &quot; + vbNewLine + &quot;Error occured during creation of runtime directories !&quot; + vbNewLine + &quot;Error Message: &quot; + vbNewLine + exception.ToString]" />
+                        <rac:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" MessageBoxDuration="{x:Null}" Buttons="Ok" DisplayName="[837528147] Message Box" sap2010:WorkflowViewState.IdRef="MessageBox_16" Text="[&quot;Something went wrong!  &quot; + vbNewLine + &quot;Error occured during creation of runtime directories !&quot; + vbNewLine + &quot;Error Message: &quot; + vbNewLine + exception.ToString]" TopMost="True" />
+                      </Sequence>
+                    </ActivityAction>
+                  </Catch>
+                </TryCatch.Catches>
+              </TryCatch>
+            </Sequence>
+            <FlowStep.Next>
+              <FlowStep x:Name="__ReferenceID0" sap2010:WorkflowViewState.IdRef="FlowStep_3">
+                <Sequence sap2010:Annotation.AnnotationText="Reads Emails from outlook and saves only PDF files&#xA;   - also creates dictionary containing information about which files were send from which address for later use&#xA;" DisplayName="[989223806] Read and save files" sap2010:WorkflowViewState.IdRef="Sequence_12">
+                  <Sequence.Variables>
+                    <Variable x:TypeArguments="scg:List(snm:MailMessage)" Default="[new List(of MailMessage)]" Name="ReceivedMessages" />
+                    <Variable x:TypeArguments="x:Int32" Default="0" Name="FilesCount" />
+                  </Sequence.Variables>
+                  <TryCatch sap2010:Annotation.AnnotationText="Gets unread mail messages which contains any attachments and store them into memory&#xA;&#xA;-- processed messages are marked as read " DisplayName="[976991533] Try Catch" sap2010:WorkflowViewState.IdRef="TryCatch_2">
+                    <TryCatch.Try>
+                      <ram:GetOutlookMailMessages TimeoutMS="{x:Null}" Account="[InOut_Config(&quot;Account&quot;)]" DisplayName="[179369630] Get Outlook Mail Messages" Filter="@SQL=urn:schemas:httpmail:hasattachment=true" GetAttachements="False" sap2010:WorkflowViewState.IdRef="GetOutlookMailMessages_1" MailFolder="[InOut_Config(&quot;MailFolder&quot;)]" MarkAsRead="True" Messages="[ReceivedMessages]" OnlyUnreadMessages="False" Top="[CInt(InOut_Config(&quot;MessagesToProcess&quot;).ToString)]" />
+                    </TryCatch.Try>
+                    <TryCatch.Catches>
+                      <Catch x:TypeArguments="s:Exception" sap2010:WorkflowViewState.IdRef="Catch`1_2">
+                        <ActivityAction x:TypeArguments="s:Exception">
+                          <ActivityAction.Argument>
+                            <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                          </ActivityAction.Argument>
+                          <Sequence DisplayName="[004996826] Sequence" sap2010:WorkflowViewState.IdRef="Sequence_22">
+                            <rac:LogMessage DisplayName="[001722764] Log Message" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="Error" Message="[&quot;Something went wrong!  &quot; + vbNewLine + &quot;Check if Outlook account is logged in or is spelled correctly in configuration file.&quot; + vbNewLine + &quot;Error Message: &quot; + vbNewLine + exception.ToString]" />
+                            <rac:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" MessageBoxDuration="{x:Null}" Buttons="Ok" DisplayName="[004998817] Message Box" sap2010:WorkflowViewState.IdRef="MessageBox_9" Text="[&quot;Something went wrong!  &quot; + vbNewLine + &quot;Check if Outlook account is logged in or is spelled correctly in configuration file.&quot; + vbNewLine + &quot;Error Message: &quot; + vbNewLine + exception.ToString]" TopMost="True" />
+                            <TerminateWorkflow DisplayName="[949226796] Terminate Workflow" Exception="[exception]" sap2010:WorkflowViewState.IdRef="TerminateWorkflow_1" />
+                          </Sequence>
+                        </ActivityAction>
+                      </Catch>
+                    </TryCatch.Catches>
+                  </TryCatch>
+                  <rac:LogMessage DisplayName="[574880764] Log Message" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot;Started saving .pdf attachments ...&quot;]" />
+                  <TryCatch DisplayName="[394155485] Try Catch Save Attachments" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+                    <TryCatch.Try>
+                      <Sequence DisplayName="[755629740] Save Attachments Sequence" sap2010:WorkflowViewState.IdRef="Sequence_35">
+                        <rac:ForEach x:TypeArguments="snm:MailMessage" CurrentIndex="{x:Null}" sap2010:Annotation.AnnotationText="Iterates trough Mail Messages, if any of them contains .pdf/.PDF file, then file is saved into directory specified by configuration&#xA;&#xA;-- other file formats such as .xls, .json or others are ignored" DisplayName="[854569653] For Each Message" sap2010:WorkflowViewState.IdRef="ForEach`1_3" Values="[ReceivedMessages]">
+                          <rac:ForEach.Body>
+                            <ActivityAction x:TypeArguments="snm:MailMessage">
+                              <ActivityAction.Argument>
+                                <DelegateInArgument x:TypeArguments="snm:MailMessage" Name="Message" />
+                              </ActivityAction.Argument>
+                              <Sequence sap2010:Annotation.AnnotationText="This sequence assing all files to email address from which they were send - required for sending processed data back.&#xA;   - Data are stored in AttachmentsAddresses variable" DisplayName="[737827066] Assign files to addresses sequence" sap2010:WorkflowViewState.IdRef="Sequence_34">
+                                <If sap2010:Annotation.AnnotationText="Checks if email address is stored in dictionary variable&#xA;   - if yes, simply adds accuired files into list with corresponding address&#xA;   - if no, creates new key with new List&lt;String&gt; variable and adds first suitable file (has .pdf/.PDF extension)&#xA;   - if message from new email address contains more than one attachment, other files are stored normaly via AddToCollection activity&#xA;" Condition="[AttachmentsAddresses.ContainsKey(Message.From.Address.ToString)]" DisplayName="[080895899] If address is saved in dictionary" sap2010:WorkflowViewState.IdRef="If_3">
+                                  <If.Then>
+                                    <rac:ForEach x:TypeArguments="snm:Attachment" CurrentIndex="{x:Null}" DisplayName="[424055423] For Each Attachment in Message Attachments" sap2010:WorkflowViewState.IdRef="ForEach`1_7" Values="[Message.Attachments]">
+                                      <rac:ForEach.Body>
+                                        <ActivityAction x:TypeArguments="snm:Attachment">
+                                          <ActivityAction.Argument>
+                                            <DelegateInArgument x:TypeArguments="snm:Attachment" Name="Attachment" />
+                                          </ActivityAction.Argument>
+                                          <Sequence DisplayName="[400605561] Do in For Each" sap2010:WorkflowViewState.IdRef="Sequence_30">
+                                            <If Condition="[Attachment.Name.Substring(Attachment.Name.Length - 4) = &quot;.pdf&quot; or Attachment.Name.Substring(Attachment.Name.Length - 4) = &quot;.PDF&quot;]" DisplayName="[892992689] If file extension is &quot;.pdf&quot;/&quot;.PDF&quot;" sap2010:WorkflowViewState.IdRef="If_5">
+                                              <If.Then>
+                                                <Sequence DisplayName="[085010629] Sequence" sap2010:WorkflowViewState.IdRef="Sequence_51">
+                                                  <If sap2010:Annotation.AnnotationText="Prevents saving duplicates&#xA;   - save attachments activity will not save same file 2 times (If mail contains two identical files)" Condition="[Not AttachmentsAddresses.Item(Message.From.Address.ToString).Contains(Attachment.Name.ToString)]" DisplayName="[085011891] If file is already saved" sap2010:WorkflowViewState.IdRef="If_8">
+                                                    <If.Then>
+                                                      <AddToCollection x:TypeArguments="x:String" Collection="[AttachmentsAddresses.Item(Message.From.Address.ToString)]" DisplayName="[544129669] AddToCollection&lt;String&gt;" sap2010:WorkflowViewState.IdRef="AddToCollection`1_2" Item="[Attachment.Name.ToString]" />
+                                                    </If.Then>
+                                                  </If>
+                                                </Sequence>
+                                              </If.Then>
+                                            </If>
+                                          </Sequence>
+                                        </ActivityAction>
+                                      </rac:ForEach.Body>
+                                    </rac:ForEach>
+                                  </If.Then>
+                                  <If.Else>
+                                    <rac:ForEach x:TypeArguments="snm:Attachment" CurrentIndex="{x:Null}" sap2010:Annotation.AnnotationText="If loaded email address is not present in dictionary, this address is assigned with first valid &quot;.pdf&quot;/&quot;.PDF&quot; file&#xA;   - if there are others valid files in Message, they are processed by &quot;If&quot; activity bellow." DisplayName="[861190228] For Each Attachment in Message Attachments" sap2010:WorkflowViewState.IdRef="ForEach`1_12" Values="[Message.Attachments]">
+                                      <rac:ForEach.Body>
+                                        <ActivityAction x:TypeArguments="snm:Attachment">
+                                          <ActivityAction.Argument>
+                                            <DelegateInArgument x:TypeArguments="snm:Attachment" Name="Attachment" />
+                                          </ActivityAction.Argument>
+                                          <Sequence DisplayName="[829101828] Do in For Each" sap2010:WorkflowViewState.IdRef="Sequence_39">
+                                            <If Condition="[Attachment.Name.Substring(Attachment.Name.Length - 4) = &quot;.pdf&quot; or Attachment.Name.Substring(Attachment.Name.Length - 4) = &quot;.PDF&quot;]" DisplayName="[898850025] If file extension is &quot;.pdf&quot;/&quot;.PDF&quot;" sap2010:WorkflowViewState.IdRef="If_6">
+                                              <If.Then>
+                                                <If sap2010:Annotation.AnnotationText="This if statement is executed when Attachments collection in email contains more than one file&#xA;   - prevents skipping of other files in message " Condition="[AttachmentsAddresses.ContainsKey(Message.From.Address.ToString)]" DisplayName="[931646606] If key was created by previous iteration" sap2010:WorkflowViewState.IdRef="If_7">
+                                                  <If.Then>
+                                                    <If sap2010:Annotation.AnnotationText="Prevents saving duplicates&#xA;   - save attachments activity will not save same file 2 times (If mail contains two identical files)" Condition="[Not AttachmentsAddresses.Item(Message.From.Address.ToString).Contains(Attachment.Name.ToString)]" DisplayName="[191181449] If file is already saved" sap2010:WorkflowViewState.IdRef="If_9">
+                                                      <If.Then>
+                                                        <AddToCollection x:TypeArguments="x:String" Collection="[AttachmentsAddresses.Item(Message.From.Address.ToString)]" DisplayName="[998877136] AddToCollection&lt;String&gt;" sap2010:WorkflowViewState.IdRef="AddToCollection`1_3" Item="[Attachment.Name.ToString]" />
+                                                      </If.Then>
+                                                    </If>
+                                                  </If.Then>
+                                                  <If.Else>
+                                                    <Sequence DisplayName="[041209784]  Assign new Key/Value and break" sap2010:WorkflowViewState.IdRef="Sequence_47">
+                                                      <Assign DisplayName="[618893885] [956613464]Assign" sap2010:WorkflowViewState.IdRef="Assign_1">
+                                                        <Assign.To>
+                                                          <OutArgument x:TypeArguments="scg:List(x:String)">[AttachmentsAddresses(Message.From.Address.ToString)]</OutArgument>
+                                                        </Assign.To>
+                                                        <Assign.Value>
+                                                          <InArgument x:TypeArguments="scg:List(x:String)">[new List(of String) from {Attachment.Name}]</InArgument>
+                                                        </Assign.Value>
+                                                      </Assign>
+                                                    </Sequence>
+                                                  </If.Else>
+                                                </If>
+                                              </If.Then>
+                                            </If>
+                                          </Sequence>
+                                        </ActivityAction>
+                                      </rac:ForEach.Body>
+                                    </rac:ForEach>
+                                  </If.Else>
+                                </If>
+                                <ram:SaveMailAttachments Attachments="{x:Null}" sap2010:Annotation.AnnotationText="Saves attachment into directory specified by configuration, &#xA;   - Other files then .pdf/.PDF are ignored &#xA;   - See Filter property" DisplayName="[599282940] Save Mail Attachments" Filter=".*(.pdf|.PDF)$" FolderPath="[InOut_Config(&quot;AutomationDirectory&quot;) + &quot;\&quot; + RuntimeFolder + &quot;\&quot; + &quot;Downloads&quot;]" sap2010:WorkflowViewState.IdRef="SaveMailAttachments_1" Message="[Message]" />
+                              </Sequence>
+                            </ActivityAction>
+                          </rac:ForEach.Body>
+                        </rac:ForEach>
+                        <Sequence sap2010:Annotation.AnnotationText="This sequence is responsible only for logging, so it's not requered for program execution&#xA;   - CAN BE COMMENTED OUT" DisplayName="[473376012] Log loaded files sequence" sap2010:WorkflowViewState.IdRef="Sequence_40">
+                          <rac:LogMessage DisplayName="[482414014] Log Message" sap2010:WorkflowViewState.IdRef="LogMessage_17" Level="Info" Message="[&quot;All loaded files: &quot;]" />
+                          <rac:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="[188374239] For Each &lt;T&gt;" sap2010:WorkflowViewState.IdRef="ForEach`1_10" Values="[AttachmentsAddresses.Keys]">
+                            <rac:ForEach.Body>
+                              <ActivityAction x:TypeArguments="x:String">
+                                <ActivityAction.Argument>
+                                  <DelegateInArgument x:TypeArguments="x:String" Name="key" />
+                                </ActivityAction.Argument>
+                                <Sequence DisplayName="[204744751] Sequence" sap2010:WorkflowViewState.IdRef="Sequence_37">
+                                  <rac:LogMessage DisplayName="[204746073] Log Message" sap2010:WorkflowViewState.IdRef="LogMessage_14" Level="Info" Message="[&quot;   &quot; + &quot;FROM &quot; + key.ToString + &quot;: &quot;]" />
+                                  <rac:ForEach x:TypeArguments="x:Object" CurrentIndex="{x:Null}" DisplayName="[386690683] For Each &lt;T&gt;" sap2010:WorkflowViewState.IdRef="ForEach`1_11" Values="[AttachmentsAddresses.Item(key)]">
+                                    <rac:ForEach.Body>
+                                      <ActivityAction x:TypeArguments="x:Object">
+                                        <ActivityAction.Argument>
+                                          <DelegateInArgument x:TypeArguments="x:Object" Name="item" />
+                                        </ActivityAction.Argument>
+                                        <Sequence DisplayName="[125309823] Do" sap2010:WorkflowViewState.IdRef="Sequence_36">
+                                          <rac:LogMessage DisplayName="[201299347] Log Message" sap2010:WorkflowViewState.IdRef="LogMessage_15" Level="Info" Message="[&quot;      &quot; + String.Join(&quot; &quot;, item)]" />
+                                        </Sequence>
+                                      </ActivityAction>
+                                    </rac:ForEach.Body>
+                                  </rac:ForEach>
+                                </Sequence>
+                              </ActivityAction>
+                            </rac:ForEach.Body>
+                          </rac:ForEach>
+                        </Sequence>
+                      </Sequence>
+                    </TryCatch.Try>
+                    <TryCatch.Catches>
+                      <Catch x:TypeArguments="s:Exception" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+                        <ActivityAction x:TypeArguments="s:Exception">
+                          <ActivityAction.Argument>
+                            <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                          </ActivityAction.Argument>
+                          <Sequence DisplayName="[520960297] Sequence" sap2010:WorkflowViewState.IdRef="Sequence_20">
+                            <rac:LogMessage DisplayName="[520961583] Log Message" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Error" Message="[&quot;Something went wrong during attachments saving!&quot; + vbNewLine + &quot;Error message: &quot; + vbNewLine + exception.ToString]" />
+                            <rac:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" MessageBoxDuration="{x:Null}" Buttons="Ok" DisplayName="[411606396] Message Box" sap2010:WorkflowViewState.IdRef="MessageBox_8" Text="[&quot;Something went wrong during attachments saving!&quot; + vbNewLine + &quot;Error message: &quot; + vbNewLine + exception.ToString]" TopMost="True" />
+                          </Sequence>
+                        </ActivityAction>
+                      </Catch>
+                    </TryCatch.Catches>
+                  </TryCatch>
+                  <If sap2010:Annotation.AnnotationText="   - CAN BE COMMENTED OUT" Condition="[Not ReceivedMessages.Count = 0]" DisplayName="[923881017] File save status logging" sap2010:WorkflowViewState.IdRef="If_1">
+                    <If.Then>
+                      <rac:LogMessage DisplayName="[615302088] Log Message" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Info" Message="[&quot;Files saved successfuly into &quot; + InOut_Config(&quot;AutomationDirectory&quot;) + &quot;\&quot; + RuntimeFolder + &quot;\&quot; + &quot;Downloads&quot;]" />
+                    </If.Then>
+                    <If.Else>
+                      <rac:LogMessage DisplayName="[935044528] Log Message" sap2010:WorkflowViewState.IdRef="LogMessage_5" Level="Info" Message="[&quot;No new files were found inside &quot; + InOut_Config(&quot;MailFolder&quot;).ToString + &quot; folder.&quot;]" />
+                    </If.Else>
+                  </If>
+                </Sequence>
+                <FlowStep.Next>
+                  <FlowStep x:Name="__ReferenceID1" sap2010:WorkflowViewState.IdRef="FlowStep_2">
+                    <Sequence sap2010:Annotation.AnnotationText="- Uploads downloaded files to Azure FR service&#xA;- Downloads and processes files&#xA;- Saves results to ProcessedFiles Directory" DisplayName="[943368645] Form Recognizer" sap2010:WorkflowViewState.IdRef="Sequence_13">
+                      <Sequence.Variables>
+                        <Variable x:TypeArguments="scg:Dictionary(x:String, x:String)" Default="[new Dictionary(of String, String)]" Name="ProcessedFilesEndpoints" />
+                      </Sequence.Variables>
+                      <Sequence DisplayName="[445019990] Upload Files Sequence" sap2010:WorkflowViewState.IdRef="Sequence_74">
+                        <TryCatch sap2010:Annotation.AnnotationText="Try to load and upload each file to form recognizer service via Python script in /python folder" DisplayName="[867721132] Try Upload Files to Azure Form Recognizer" sap2010:WorkflowViewState.IdRef="TryCatch_5">
+                          <TryCatch.Try>
+                            <Sequence DisplayName="[268944438] Get files and send them to FR" sap2010:WorkflowViewState.IdRef="Sequence_44">
+                              <Sequence.Variables>
+                                <Variable x:TypeArguments="rac:FileData[]" Name="FilesToProcess" />
+                              </Sequence.Variables>
+                              <rap:PythonScope DisplayName="[831720064] Python Scope" sap2010:WorkflowViewState.IdRef="PythonScope_1" Path="C:/Users/JakubKovac/AppData/Local/Programs/Python/Python39/">
+                                <rap:PythonScope.Body>
+                                  <ActivityAction x:TypeArguments="x:Object">
+                                    <ActivityAction.Argument>
+                                      <DelegateInArgument x:TypeArguments="x:Object" Name="PythonEngineSessionProperty" />
+                                    </ActivityAction.Argument>
+                                    <Sequence DisplayName="[217122025] Sequence" sap2010:WorkflowViewState.IdRef="Sequence_69">
+                                      <rac:LogMessage DisplayName="[217124246] Log Message" sap2010:WorkflowViewState.IdRef="LogMessage_33" Level="Info" Message="[&quot;Upload of saved files to Form Recognizer has started: &quot;]" />
+                                      <Sequence DisplayName="[776467655] Do in Python Scope" sap2010:WorkflowViewState.IdRef="Sequence_65">
+                                        <Sequence.Variables>
+                                          <Variable x:TypeArguments="ap:PythonObject" Name="UploadScript" />
+                                          <Variable x:TypeArguments="ap:PythonObject" Name="MethodRslt" />
+                                        </Sequence.Variables>
+                                        <rap:LoadScript Code="{x:Null}" DisplayName="[786803436] Load uploadToAzure.py" sap2010:WorkflowViewState.IdRef="LoadScript_2" Result="[UploadScript]" ScriptFile="python/uploadToAzure.py" />
+                                        <rac:GetFiles CreateTimeTo="[DateTime.Now().AddHours(1)]" Directory="[InOut_Config(&quot;AutomationDirectory&quot;) + &quot;\&quot; + RuntimeFolder + &quot;\&quot; + &quot;Downloads&quot;]" DisplayName="[281664379] Get FilesToProcess" Files="[FilesToProcess]" Filter="*" sap2010:WorkflowViewState.IdRef="GetFiles_2" SearchOption="TopDirectoryOnly" />
+                                        <rac:ForEach x:TypeArguments="rac:FileData" CurrentIndex="{x:Null}" DisplayName="[461642788] For Each File in FilesToProcess" sap2010:WorkflowViewState.IdRef="ForEach`1_13" Values="[FilesToProcess]">
+                                          <rac:ForEach.Body>
+                                            <ActivityAction x:TypeArguments="rac:FileData">
+                                              <ActivityAction.Argument>
+                                                <DelegateInArgument x:TypeArguments="rac:FileData" Name="File" />
+                                              </ActivityAction.Argument>
+                                              <Sequence DisplayName="[079587680] Do In For Each" sap2010:WorkflowViewState.IdRef="Sequence_66">
+                                                <Sequence.Variables>
+                                                  <Variable x:TypeArguments="x:String" Name="ResultUrl" />
+                                                  <Variable x:TypeArguments="x:String" Default="[(InOut_Config(&quot;AutomationDirectory&quot;) + &quot;\&quot; + RuntimeFolder + &quot;\&quot; + &quot;Downloads\&quot; + File.Name).Replace(&quot;\&quot;,&quot;/&quot;).ToString()]" Name="FileToUploadPath" />
+                                                </Sequence.Variables>
+                                                <rap:InvokeMethod sap2010:Annotation.AnnotationText="Invokes sendFile() function in python script&#xA;- PROVIDE PARAMETERS IN FOLLOWING ORDER :&#xA;   - filePath&#xA;   - baseApiUrl&#xA;   - apiVersion&#xA;   - apiKey" DisplayName="[940317807] Invoke sendFileToAzure()" sap2010:WorkflowViewState.IdRef="InvokeMethod_2" Instance="[UploadScript]" Name="sendFile" Parameters="[{FileToUploadPath,  InOut_Config(&quot;baseAzureApi&quot;),  InOut_Config(&quot;apiVersion&quot;),  InOut_Config(&quot;apiKey&quot;)}]" Result="[MethodRslt]" />
+                                                <Delay sap2010:Annotation.AnnotationText="3 sec delay due to request process " DisplayName="[503649865] Delay 3sec" Duration="00:00:03" sap2010:WorkflowViewState.IdRef="Delay_2" />
+                                                <rap:GetObject x:TypeArguments="x:String" sap2010:Annotation.AnnotationText="Retrieves return value of sendFile() function - Endpoint where processed file will be stored" DisplayName="[943670613] Get Processed File Endpoint " sap2010:WorkflowViewState.IdRef="GetObject`1_1" PythonObject="[MethodRslt]" Result="[ResultUrl]" />
+                                                <Assign DisplayName="[971646788] Assign" sap2010:WorkflowViewState.IdRef="Assign_2">
+                                                  <Assign.To>
+                                                    <OutArgument x:TypeArguments="x:String">[ProcessedFilesEndpoints(File.Name)]</OutArgument>
+                                                  </Assign.To>
+                                                  <Assign.Value>
+                                                    <InArgument x:TypeArguments="x:String">[ResultUrl]</InArgument>
+                                                  </Assign.Value>
+                                                </Assign>
+                                                <rac:LogMessage DisplayName="[079589663] Log Message" sap2010:WorkflowViewState.IdRef="LogMessage_30" Level="Info" Message="[&quot;   &quot; + File.Name + &quot;:    &quot; + ProcessedFilesEndpoints(File.Name)]" />
+                                              </Sequence>
+                                            </ActivityAction>
+                                          </rac:ForEach.Body>
+                                        </rac:ForEach>
+                                      </Sequence>
+                                    </Sequence>
+                                  </ActivityAction>
+                                </rap:PythonScope.Body>
+                              </rap:PythonScope>
+                              <rac:LogMessage DisplayName="[478876934] Log Message" sap2010:WorkflowViewState.IdRef="LogMessage_32" Level="Info" Message="[&quot;Files upload to azure FR was completed!&quot;]" />
+                            </Sequence>
+                          </TryCatch.Try>
+                          <TryCatch.Catches>
+                            <Catch x:TypeArguments="s:Exception" sap2010:WorkflowViewState.IdRef="Catch`1_5">
+                              <ActivityAction x:TypeArguments="s:Exception">
+                                <ActivityAction.Argument>
+                                  <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                                </ActivityAction.Argument>
+                                <Sequence DisplayName="[007811505] Sequence" sap2010:WorkflowViewState.IdRef="Sequence_42">
+                                  <rac:LogMessage DisplayName="[916937904] Log Message" sap2010:WorkflowViewState.IdRef="LogMessage_18" Level="Error" Message="[&quot;Something went wrong during file upload!&quot; + vbNewLine + &quot;Error: &quot; + vbNewLine + exception.ToString]" />
+                                  <rac:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" MessageBoxDuration="{x:Null}" Buttons="Ok" DisplayName="[007813488] Message Box" sap2010:WorkflowViewState.IdRef="MessageBox_14" Text="[&quot;Something went wrong during file upload!&quot; + vbNewLine + &quot;Error: &quot; + vbNewLine + exception.ToString]" TopMost="True" />
+                                  <TerminateWorkflow DisplayName="[022437960] Terminate Workflow" Exception="[exception]" sap2010:WorkflowViewState.IdRef="TerminateWorkflow_2" />
+                                </Sequence>
+                              </ActivityAction>
+                            </Catch>
+                          </TryCatch.Catches>
+                        </TryCatch>
+                      </Sequence>
+                      <Sequence DisplayName="[431643962] Download  Processed files sequence" sap2010:WorkflowViewState.IdRef="Sequence_75">
+                        <TryCatch sap2010:Annotation.AnnotationText="Try to download processed files from url address stored in ProcessedFilesEndpoints Dictionary&#xA;- JSON Files are stored in Json directory inside directory of specific run " DisplayName="[859879032] Try To save processed files in JSON format" sap2010:WorkflowViewState.IdRef="TryCatch_8">
+                          <TryCatch.Try>
+                            <Sequence DisplayName="[046202508] Save processed files" sap2010:WorkflowViewState.IdRef="Sequence_68">
+                              <rap:PythonScope DisplayName="[743768893] Python Scope" sap2010:WorkflowViewState.IdRef="PythonScope_2" Path="C:/Users/JakubKovac/AppData/Local/Programs/Python/Python39/">
+                                <rap:PythonScope.Body>
+                                  <ActivityAction x:TypeArguments="x:Object">
+                                    <ActivityAction.Argument>
+                                      <DelegateInArgument x:TypeArguments="x:Object" Name="PythonEngineSessionProperty" />
+                                    </ActivityAction.Argument>
+                                    <Sequence DisplayName="[743996123] Sequence" sap2010:WorkflowViewState.IdRef="Sequence_73">
+                                      <rac:LogMessage DisplayName="[743997363] Log Message" sap2010:WorkflowViewState.IdRef="LogMessage_36" Level="Info" Message="[&quot;Download of processed files started!&quot;]" />
+                                      <Sequence DisplayName="[743770880] Do In Python Scope" sap2010:WorkflowViewState.IdRef="Sequence_70">
+                                        <Sequence.Variables>
+                                          <Variable x:TypeArguments="ap:PythonObject" Name="DownloadPythonScript" />
+                                        </Sequence.Variables>
+                                        <rap:LoadScript Code="{x:Null}" DisplayName="[803974981] Load getFromAzure.py" sap2010:WorkflowViewState.IdRef="LoadScript_3" Result="[DownloadPythonScript]" ScriptFile="python/getFromAzure.py" />
+                                        <rac:ForEach x:TypeArguments="scg:KeyValuePair(x:String, x:String)" CurrentIndex="{x:Null}" DisplayName="[691055374] For Each &lt;T&gt;" sap2010:WorkflowViewState.IdRef="ForEach`1_21" Values="[ProcessedFilesEndpoints]">
+                                          <rac:ForEach.Body>
+                                            <ActivityAction x:TypeArguments="scg:KeyValuePair(x:String, x:String)">
+                                              <ActivityAction.Argument>
+                                                <DelegateInArgument x:TypeArguments="scg:KeyValuePair(x:String, x:String)" Name="File" />
+                                              </ActivityAction.Argument>
+                                              <Sequence DisplayName="[958794594] Do in For Each" sap2010:WorkflowViewState.IdRef="Sequence_71">
+                                                <Sequence.Variables>
+                                                  <Variable x:TypeArguments="ap:PythonObject" Name="JsonAsPythonObject" />
+                                                  <Variable x:TypeArguments="x:String" Name="JsonAsString" />
+                                                </Sequence.Variables>
+                                                <rap:InvokeMethod sap2010:Annotation.AnnotationText="Invokes retrieveFileFromAzure() function&#xA;- takes processed file url and API key as parameters&#xA;- Make sure to provide params in correct order as shown above! Otherwise python script will fail!" DisplayName="[314937104] Invoke Python Method" sap2010:WorkflowViewState.IdRef="InvokeMethod_3" Instance="[DownloadPythonScript]" Name="retrieveFileFromAzure" Parameters="[{File.Value.ToString, InOut_Config(&quot;apiKey&quot;)}]" Result="[JsonAsPythonObject]" />
+                                                <Delay DisplayName="[839798422] Delay 3sec" Duration="00:00:03" sap2010:WorkflowViewState.IdRef="Delay_3" />
+                                                <rap:GetObject x:TypeArguments="x:String" sap2010:Annotation.AnnotationText="Saves processed data into local variable JsonAsString" DisplayName="[831101505] Get Json As String" sap2010:WorkflowViewState.IdRef="GetObject`1_2" PythonObject="[JsonAsPythonObject]" Result="[JsonAsString]" />
+                                                <rac:WriteTextFile sap2010:Annotation.AnnotationText="Creates new .json file inside runtime directory" DisplayName="[081705194] Write .json File" Encoding="utf-8" FileName="[InOut_Config(&quot;AutomationDirectory&quot;) + &quot;\&quot; + RuntimeFolder + &quot;\&quot; + &quot;Json\&quot; + File.Key + &quot;.json&quot;]" sap2010:WorkflowViewState.IdRef="WriteTextFile_1" Text="[Newtonsoft.Json.Linq.JValue.Parse(JsonAsString).ToString(Newtonsoft.Json.Formatting.Indented)]" />
+                                                <rac:LogMessage DisplayName="[772545352] Log Message" sap2010:WorkflowViewState.IdRef="LogMessage_37" Level="Info" Message="[&quot;   &quot; + InOut_Config(&quot;AutomationDirectory&quot;) + &quot;\&quot; + RuntimeFolder + &quot;\&quot; + &quot;Json\&quot; + File.Key + &quot;.json&quot;]" />
+                                              </Sequence>
+                                            </ActivityAction>
+                                          </rac:ForEach.Body>
+                                        </rac:ForEach>
+                                      </Sequence>
+                                    </Sequence>
+                                  </ActivityAction>
+                                </rap:PythonScope.Body>
+                              </rap:PythonScope>
+                              <rac:LogMessage DisplayName="[811874282] Log Message" sap2010:WorkflowViewState.IdRef="LogMessage_38" Level="Info" Message="[&quot;All processed files were sucessfully saved!&quot;]" />
+                            </Sequence>
+                          </TryCatch.Try>
+                          <TryCatch.Catches>
+                            <Catch x:TypeArguments="s:Exception" sap2010:WorkflowViewState.IdRef="Catch`1_8">
+                              <ActivityAction x:TypeArguments="s:Exception">
+                                <ActivityAction.Argument>
+                                  <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                                </ActivityAction.Argument>
+                                <Sequence DisplayName="[944734394] Sequence" sap2010:WorkflowViewState.IdRef="Sequence_67">
+                                  <rac:LogMessage DisplayName="[932715388] Log Message" sap2010:WorkflowViewState.IdRef="LogMessage_31" Level="Error" Message="[&quot;Something went wrong during processed files download!&quot; + vbNewLine + &quot;Error: &quot; + vbNewLine + exception.ToString]" />
+                                  <rac:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" MessageBoxDuration="{x:Null}" Buttons="Ok" DisplayName="[944736387] Message Box" sap2010:WorkflowViewState.IdRef="MessageBox_17" Text="[&quot;Something went wrong during processed files download!&quot; + vbNewLine + &quot;Error: &quot; + vbNewLine + exception.ToString]" TopMost="True" />
+                                </Sequence>
+                              </ActivityAction>
+                            </Catch>
+                          </TryCatch.Catches>
+                        </TryCatch>
+                      </Sequence>
+                    </Sequence>
+                    <FlowStep.Next>
+                      <FlowStep x:Name="__ReferenceID5" sap2010:WorkflowViewState.IdRef="FlowStep_9">
+                        <Sequence sap2010:Annotation.AnnotationText="Processes each Json File created by Form Recognizer Sequence above" DisplayName="[532452847] Data Processing" sap2010:WorkflowViewState.IdRef="Sequence_76">
+                          <Sequence.Variables>
+                            <Variable x:TypeArguments="rac:FileData[]" Name="JsonFiles" />
+                            <Variable x:TypeArguments="scg:List(x:String)" Default="[new List(of String) from {&quot;CustomerAddress&quot;, &quot;CustomerName&quot;, &quot;InvoiceTotal&quot;, &quot;Items&quot;, &quot;TotalTax&quot;, &quot;VendorName&quot;, &quot;VendorAddress&quot;}]" Name="FormRecognizerKeys" />
+                          </Sequence.Variables>
+                          <rac:LogMessage DisplayName="[223829713] Log Message" sap2010:WorkflowViewState.IdRef="LogMessage_41" Level="Info" Message="[&quot;Started data extraction from processed files!&quot;]" />
+                          <rac:GetFiles sap2010:Annotation.AnnotationText="Store json files into JsonFiles var&#xA;- files are located inside RuntimeFolder\json folder" CreateTimeTo="[DateTime.Now().AddHours(1)]" Directory="[InOut_Config(&quot;AutomationDirectory&quot;) + &quot;\&quot; + RuntimeFolder + &quot;\&quot; + &quot;Json\&quot;]" DisplayName="[946516397] Get .json Files" Files="[JsonFiles]" Filter="*" sap2010:WorkflowViewState.IdRef="GetFiles_3" SearchOption="TopDirectoryOnly" />
+                          <rac:ForEach x:TypeArguments="rac:FileData" CurrentIndex="{x:Null}" DisplayName="[195688932] For Each File" sap2010:WorkflowViewState.IdRef="ForEach`1_22" Values="[JsonFiles]">
+                            <rac:ForEach.Body>
+                              <ActivityAction x:TypeArguments="rac:FileData">
+                                <ActivityAction.Argument>
+                                  <DelegateInArgument x:TypeArguments="rac:FileData" Name="File" />
+                                </ActivityAction.Argument>
+                                <Sequence DisplayName="[103183500] Do In Foreach" sap2010:WorkflowViewState.IdRef="Sequence_79">
+                                  <Sequence.Variables>
+                                    <Variable x:TypeArguments="x:String" Name="JsonString" />
+                                    <Variable x:TypeArguments="sd:DataTable" Name="InvoiceDT" />
+                                    <Variable x:TypeArguments="sd:DataTable" Name="ProductDT" />
+                                  </Sequence.Variables>
+                                  <rac:BuildDataTable DataTable="[InvoiceDT]" DisplayName="[402403343] Build InvoiceDT" sap2010:WorkflowViewState.IdRef="BuildDataTable_1" TableInfo="&lt;NewDataSet&gt;&#xD;&#xA;  &lt;xs:schema id=&quot;NewDataSet&quot; xmlns=&quot;&quot; xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:msdata=&quot;urn:schemas-microsoft-com:xml-msdata&quot;&gt;&#xD;&#xA;    &lt;xs:element name=&quot;NewDataSet&quot; msdata:IsDataSet=&quot;true&quot; msdata:MainDataTable=&quot;TableName&quot; msdata:UseCurrentLocale=&quot;true&quot;&gt;&#xD;&#xA;      &lt;xs:complexType&gt;&#xD;&#xA;        &lt;xs:choice minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;&gt;&#xD;&#xA;          &lt;xs:element name=&quot;TableName&quot;&gt;&#xD;&#xA;            &lt;xs:complexType&gt;&#xD;&#xA;              &lt;xs:sequence&gt;&#xD;&#xA;                &lt;xs:element name=&quot;FormRecognizerKey&quot;&gt;&#xD;&#xA;                  &lt;xs:simpleType&gt;&#xD;&#xA;                    &lt;xs:restriction base=&quot;xs:string&quot;&gt;&#xD;&#xA;                      &lt;xs:maxLength value=&quot;100&quot; /&gt;&#xD;&#xA;                    &lt;/xs:restriction&gt;&#xD;&#xA;                  &lt;/xs:simpleType&gt;&#xD;&#xA;                &lt;/xs:element&gt;&#xD;&#xA;                &lt;xs:element name=&quot;Value&quot; type=&quot;xs:string&quot; /&gt;&#xD;&#xA;                &lt;xs:element name=&quot;Page&quot; type=&quot;xs:int&quot; /&gt;&#xD;&#xA;              &lt;/xs:sequence&gt;&#xD;&#xA;            &lt;/xs:complexType&gt;&#xD;&#xA;          &lt;/xs:element&gt;&#xD;&#xA;        &lt;/xs:choice&gt;&#xD;&#xA;      &lt;/xs:complexType&gt;&#xD;&#xA;    &lt;/xs:element&gt;&#xD;&#xA;  &lt;/xs:schema&gt;&#xD;&#xA;&lt;/NewDataSet&gt;" />
+                                  <rac:BuildDataTable DataTable="[ProductDT]" DisplayName="[553736732] Build ProductDT" sap2010:WorkflowViewState.IdRef="BuildDataTable_2" TableInfo="&lt;NewDataSet&gt;&#xD;&#xA;  &lt;xs:schema id=&quot;NewDataSet&quot; xmlns=&quot;&quot; xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:msdata=&quot;urn:schemas-microsoft-com:xml-msdata&quot;&gt;&#xD;&#xA;    &lt;xs:element name=&quot;NewDataSet&quot; msdata:IsDataSet=&quot;true&quot; msdata:MainDataTable=&quot;TableName&quot; msdata:UseCurrentLocale=&quot;true&quot;&gt;&#xD;&#xA;      &lt;xs:complexType&gt;&#xD;&#xA;        &lt;xs:choice minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;&gt;&#xD;&#xA;          &lt;xs:element name=&quot;TableName&quot;&gt;&#xD;&#xA;            &lt;xs:complexType&gt;&#xD;&#xA;              &lt;xs:sequence&gt;&#xD;&#xA;                &lt;xs:element name=&quot;ProductCode&quot;&gt;&#xD;&#xA;                  &lt;xs:simpleType&gt;&#xD;&#xA;                    &lt;xs:restriction base=&quot;xs:string&quot;&gt;&#xD;&#xA;                      &lt;xs:maxLength value=&quot;100&quot; /&gt;&#xD;&#xA;                    &lt;/xs:restriction&gt;&#xD;&#xA;                  &lt;/xs:simpleType&gt;&#xD;&#xA;                &lt;/xs:element&gt;&#xD;&#xA;                &lt;xs:element name=&quot;Description&quot; type=&quot;xs:string&quot; /&gt;&#xD;&#xA;                &lt;xs:element name=&quot;Amount&quot; type=&quot;xs:string&quot; /&gt;&#xD;&#xA;              &lt;/xs:sequence&gt;&#xD;&#xA;            &lt;/xs:complexType&gt;&#xD;&#xA;          &lt;/xs:element&gt;&#xD;&#xA;        &lt;/xs:choice&gt;&#xD;&#xA;      &lt;/xs:complexType&gt;&#xD;&#xA;    &lt;/xs:element&gt;&#xD;&#xA;  &lt;/xs:schema&gt;&#xD;&#xA;&lt;/NewDataSet&gt;" />
+                                  <rac:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" MessageBoxDuration="{x:Null}" Buttons="Ok" DisplayName="[900133507] Message Box" sap2010:WorkflowViewState.IdRef="MessageBox_24" Text="[InvoiceDT.ToString]" TopMost="True" />
+                                  <rac:ReadTextFile sap2010:Annotation.AnnotationText="Reads json file on specified path in runtime folder" Content="[JsonString]" DisplayName="[930730225] Read JSON File" Encoding="utf-8" FileName="[InOut_Config(&quot;AutomationDirectory&quot;) + &quot;\&quot; + RuntimeFolder + &quot;\&quot; + &quot;Json\&quot; + File.Name]" sap2010:WorkflowViewState.IdRef="ReadTextFile_1" />
+                                  <Sequence sap2010:Annotation.AnnotationText="This sequence process each json file and saves them into excel file" DisplayName="[714925255] Process Json Data" sap2010:WorkflowViewState.IdRef="Sequence_80">
+                                    <Sequence.Variables>
+                                      <Variable x:TypeArguments="njl:JObject" Name="DeserializedJSON" />
+                                      <Variable x:TypeArguments="njl:JObject" Name="fields" />
+                                      <Variable x:TypeArguments="njl:JObject" Name="analyzeResults" />
+                                      <Variable x:TypeArguments="njl:JArray" Name="documentResults" />
+                                    </Sequence.Variables>
+                                    <rac:DeserializeJson x:TypeArguments="njl:JObject" DisplayName="[913749026] Deserialize Json &lt;T&gt;" sap2010:WorkflowViewState.IdRef="DeserializeJson`1_1" JsonObject="[DeserializedJSON]" JsonString="[JsonString]" />
+                                    <rac:DeserializeJson x:TypeArguments="njl:JObject" DisplayName="[864892313] Deserialize &quot;analyzeResults&quot;" sap2010:WorkflowViewState.IdRef="DeserializeJson`1_2" JsonObject="[analyzeResults]" JsonString="[DeserializedJSON.GetValue(&quot;analyzeResult&quot;).toString]" />
+                                    <rac:DeserializeJsonArray DisplayName="[519494389] Deserialize &quot;documentResults&quot;" sap2010:WorkflowViewState.IdRef="DeserializeJsonArray_1" JsonArray="[documentResults]" JsonString="[analyzeResults.GetValue(&quot;documentResults&quot;).toString]" />
+                                    <rac:ForEach x:TypeArguments="njl:JObject" CurrentIndex="{x:Null}" sap2010:Annotation.AnnotationText="Form Recognizer returns documentResults as Array which always contain one element" DisplayName="[060586712] For Each Object in documentResults" sap2010:WorkflowViewState.IdRef="ForEach`1_23" Values="[documentResults]">
+                                      <rac:ForEach.Body>
+                                        <ActivityAction x:TypeArguments="njl:JObject">
+                                          <ActivityAction.Argument>
+                                            <DelegateInArgument x:TypeArguments="njl:JObject" Name="item" />
+                                          </ActivityAction.Argument>
+                                          <Sequence DisplayName="[688547075] Do In &quot;documentResults&quot; " sap2010:WorkflowViewState.IdRef="Sequence_86">
+                                            <Sequence.Variables>
+                                              <Variable x:TypeArguments="njl:JObject" Name="InvoiceData" />
+                                            </Sequence.Variables>
+                                            <rac:DeserializeJson x:TypeArguments="njl:JObject" DisplayName="[709037381] Deserialize Json &lt;T&gt;" sap2010:WorkflowViewState.IdRef="DeserializeJson`1_5" JsonObject="[InvoiceData]" JsonString="[item.GetValue(&quot;fields&quot;).toString]" />
+                                            <rac:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="[847730687] For Each Key in FormRecognizerKeys" sap2010:WorkflowViewState.IdRef="ForEach`1_24" Values="[FormRecognizerKeys]">
+                                              <rac:ForEach.Body>
+                                                <ActivityAction x:TypeArguments="x:String">
+                                                  <ActivityAction.Argument>
+                                                    <DelegateInArgument x:TypeArguments="x:String" Name="FrKey" />
+                                                  </ActivityAction.Argument>
+                                                  <Sequence DisplayName="[832713758] Do In Foreach" sap2010:WorkflowViewState.IdRef="Sequence_88">
+                                                    <TryCatch sap2010:Annotation.AnnotationText="Tries to extract data with keys specified in FormRecognizerKeys List&lt;String&gt;&#xA;&#xA;- if list key is &quot;items&quot;, then array must be deserialized because items contains multipe objects&#xA;&#xA;- if key is is not found - THROWS EXCEPTION, then Catch block must write N/A value into excel alongside empty key" DisplayName="[790808364] Try Extract Data with Form Recognizer Keys" sap2010:WorkflowViewState.IdRef="TryCatch_9">
+                                                      <TryCatch.Try>
+                                                        <Sequence DisplayName="[472976446] Key found Sequence" sap2010:WorkflowViewState.IdRef="Sequence_91">
+                                                          <If Condition="[FrKey = &quot;Items&quot;]" DisplayName="[472978385] If Key is Items array" sap2010:WorkflowViewState.IdRef="If_12">
+                                                            <If.Then>
+                                                              <Sequence DisplayName="[496343239] Get data out of &quot;items&quot; array" sap2010:WorkflowViewState.IdRef="Sequence_89">
+                                                                <Sequence.Variables>
+                                                                  <Variable x:TypeArguments="njl:JArray" Name="ItemsJArray" />
+                                                                  <Variable x:TypeArguments="njl:JObject" Name="Items" />
+                                                                </Sequence.Variables>
+                                                                <rac:DeserializeJson x:TypeArguments="njl:JObject" DisplayName="[443345537] Deserialize Json &lt;T&gt;" sap2010:WorkflowViewState.IdRef="DeserializeJson`1_6" JsonObject="[Items]" JsonString="[InvoiceData.GetValue(&quot;Items&quot;).ToString]" />
+                                                                <rac:DeserializeJsonArray DisplayName="[488413358] Deserialize Json Array" sap2010:WorkflowViewState.IdRef="DeserializeJsonArray_3" JsonArray="[ItemsJArray]" JsonString="[Items.GetValue(&quot;valueArray&quot;).ToString]" />
+                                                                <rac:ForEach x:TypeArguments="njl:JObject" CurrentIndex="{x:Null}" DisplayName="[726216403] For Each Object in JArray" sap2010:WorkflowViewState.IdRef="ForEach`1_25" Values="[ItemsJArray]">
+                                                                  <rac:ForEach.Body>
+                                                                    <ActivityAction x:TypeArguments="njl:JObject">
+                                                                      <ActivityAction.Argument>
+                                                                        <DelegateInArgument x:TypeArguments="njl:JObject" Name="Obj" />
+                                                                      </ActivityAction.Argument>
+                                                                      <Sequence DisplayName="[696061583] Do In Foreach" sap2010:WorkflowViewState.IdRef="Sequence_93">
+                                                                        <Sequence.Variables>
+                                                                          <Variable x:TypeArguments="njl:JObject" Name="Product" />
+                                                                          <Variable x:TypeArguments="njl:JObject" Name="ProductAmount" />
+                                                                          <Variable x:TypeArguments="njl:JObject" Name="ProductDescription" />
+                                                                          <Variable x:TypeArguments="njl:JObject" Name="ProductCode" />
+                                                                          <Variable x:TypeArguments="moie:DataTable" Name="InvoiceProductDT" />
+                                                                        </Sequence.Variables>
+                                                                        <rac:DeserializeJson x:TypeArguments="njl:JObject" DisplayName="[853928154] Deserialize Json &lt;T&gt;" sap2010:WorkflowViewState.IdRef="DeserializeJson`1_7" JsonObject="[Product]" JsonString="[Obj.GetValue(&quot;valueObject&quot;).ToString]" />
+                                                                        <rac:DeserializeJson x:TypeArguments="njl:JObject" DisplayName="[089055684] Deserialize Amount(total product price)" sap2010:WorkflowViewState.IdRef="DeserializeJson`1_8" JsonObject="[ProductAmount]" JsonString="[Product.GetValue(&quot;Amount&quot;).ToString]" />
+                                                                        <rac:DeserializeJson x:TypeArguments="njl:JObject" DisplayName="[139062170] Deserialize Description" sap2010:WorkflowViewState.IdRef="DeserializeJson`1_9" JsonObject="[ProductDescription]" JsonString="[Product.GetValue(&quot;Description&quot;).ToString]" />
+                                                                        <rac:DeserializeJson x:TypeArguments="njl:JObject" DisplayName="[189342501] Deserialize Product Code" sap2010:WorkflowViewState.IdRef="DeserializeJson`1_10" JsonObject="[ProductCode]" JsonString="[Product.GetValue(&quot;ProductCode&quot;).ToString]" />
+                                                                      </Sequence>
+                                                                    </ActivityAction>
+                                                                  </rac:ForEach.Body>
+                                                                </rac:ForEach>
+                                                              </Sequence>
+                                                            </If.Then>
+                                                            <If.Else>
+                                                              <Sequence DisplayName="[426716974] Get Data out of JSON object" sap2010:WorkflowViewState.IdRef="Sequence_90">
+                                                                <Sequence.Variables>
+                                                                  <Variable x:TypeArguments="njl:JObject" Name="InvoiceKeyDeserialized" />
+                                                                </Sequence.Variables>
+                                                                <rac:DeserializeJson x:TypeArguments="njl:JObject" DisplayName="[653678870] Deserialize Json &lt;T&gt;" sap2010:WorkflowViewState.IdRef="DeserializeJson`1_11" JsonObject="[InvoiceKeyDeserialized]" JsonString="[InvoiceData.GetValue(FrKey).ToString]" />
+                                                                <rac:CommentOut DisplayName="[057511871] Comment Out" sap2010:WorkflowViewState.IdRef="CommentOut_13">
+                                                                  <rac:CommentOut.Body>
+                                                                    <Sequence DisplayName="[057513865] Ignored Activities" sap2010:WorkflowViewState.IdRef="Sequence_94">
+                                                                      <rac:AddDataRow ArrayRow="{x:Null}" DataRow="{x:Null}" DataTable="[InvoiceDT]" DisplayName="[778333090] Add Data Row" sap2010:WorkflowViewState.IdRef="AddDataRow_1" />
+                                                                    </Sequence>
+                                                                  </rac:CommentOut.Body>
+                                                                </rac:CommentOut>
+                                                              </Sequence>
+                                                            </If.Else>
+                                                          </If>
+                                                        </Sequence>
+                                                      </TryCatch.Try>
+                                                      <TryCatch.Catches>
+                                                        <Catch x:TypeArguments="s:Exception" sap2010:WorkflowViewState.IdRef="Catch`1_9">
+                                                          <ActivityAction x:TypeArguments="s:Exception">
+                                                            <ActivityAction.Argument>
+                                                              <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                                                            </ActivityAction.Argument>
+                                                            <Sequence DisplayName="[609206180] Write N/A value" sap2010:WorkflowViewState.IdRef="Sequence_92">
+                                                              <rac:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" MessageBoxDuration="{x:Null}" Buttons="Ok" DisplayName="[421267469] Message Box" sap2010:WorkflowViewState.IdRef="MessageBox_23" Text="[FrKey + VbNewLine + &quot;Key was not Found!&quot;]" TopMost="True" />
+                                                            </Sequence>
+                                                          </ActivityAction>
+                                                        </Catch>
+                                                      </TryCatch.Catches>
+                                                    </TryCatch>
+                                                  </Sequence>
+                                                </ActivityAction>
+                                              </rac:ForEach.Body>
+                                            </rac:ForEach>
+                                          </Sequence>
+                                        </ActivityAction>
+                                      </rac:ForEach.Body>
+                                    </rac:ForEach>
+                                  </Sequence>
+                                </Sequence>
+                              </ActivityAction>
+                            </rac:ForEach.Body>
+                          </rac:ForEach>
+                        </Sequence>
+                        <FlowStep.Next>
+                          <FlowStep x:Name="__ReferenceID2" sap2010:WorkflowViewState.IdRef="FlowStep_1">
+                            <Sequence sap2010:Annotation.AnnotationText="Gets Processed Data from file specified in configuration and send them on specified mail address&#xA;&#xA;- if there are no processed files, sending mail sequence is skipped" DisplayName="[277446418] Send Processed Data" sap2010:WorkflowViewState.IdRef="Sequence_14">
+                              <Sequence.Variables>
+                                <Variable x:TypeArguments="rac:FileData[]" Name="ProcessedFiles" />
+                              </Sequence.Variables>
+                              <TryCatch DisplayName="[418591762] Try Read Files From Folder" sap2010:WorkflowViewState.IdRef="TryCatch_3">
+                                <TryCatch.Try>
+                                  <rac:GetFiles CreateTimeTo="[DateTime.Now().AddHours(1)]" Directory="[InOut_Config(&quot;AutomationDirectory&quot;) + &quot;\&quot; + RuntimeFolder + &quot;\&quot; + &quot;ProcessedFiles&quot;]" DisplayName="[660678131] Get Processed Files" Files="[ProcessedFiles]" Filter="*" sap2010:WorkflowViewState.IdRef="GetFiles_1" SearchOption="TopDirectoryOnly" />
+                                </TryCatch.Try>
+                                <TryCatch.Catches>
+                                  <Catch x:TypeArguments="s:Exception" sap2010:WorkflowViewState.IdRef="Catch`1_3">
+                                    <ActivityAction x:TypeArguments="s:Exception">
+                                      <ActivityAction.Argument>
+                                        <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                                      </ActivityAction.Argument>
+                                      <Sequence DisplayName="[633392519] Sequence" sap2010:WorkflowViewState.IdRef="Sequence_28">
+                                        <rac:LogMessage DisplayName="[633394665] Log error" sap2010:WorkflowViewState.IdRef="LogMessage_8" Level="Error" Message="[&quot;Something went wrong!&quot; + vbNewLine + &quot;Error: &quot; + vbNewLine + exception.ToString]" />
+                                        <rac:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" MessageBoxDuration="{x:Null}" Buttons="Ok" DisplayName="[453651109] Message Box" sap2010:WorkflowViewState.IdRef="MessageBox_12" Text="[&quot;Something went wrong!&quot; + vbNewLine + &quot;Error: &quot; + vbNewLine + exception.ToString]" TopMost="True" />
+                                      </Sequence>
+                                    </ActivityAction>
+                                  </Catch>
+                                </TryCatch.Catches>
+                              </TryCatch>
+                              <If sap2010:Annotation.AnnotationText="Checks if processed files folder is not empty and prevents sending empty email." Condition="[Not ProcessedFiles.Length = 0]" DisplayName="[399305860] If any files were processed" sap2010:WorkflowViewState.IdRef="If_2">
+                                <If.Then>
+                                  <Sequence DisplayName="[405002259] Send mail and attach files" sap2010:WorkflowViewState.IdRef="Sequence_26">
+                                    <Sequence.Variables>
+                                      <Variable x:TypeArguments="scg:List(x:String)" Default="[new List(of String) from {}]" Name="FilesToSend" />
+                                    </Sequence.Variables>
+                                    <rac:ForEach x:TypeArguments="scg:KeyValuePair(x:String, scg:List(x:String))" CurrentIndex="{x:Null}" DisplayName="[163073633] For Each email address" sap2010:WorkflowViewState.IdRef="ForEach`1_15" Values="[AttachmentsAddresses]">
+                                      <rac:ForEach.Body>
+                                        <ActivityAction x:TypeArguments="scg:KeyValuePair(x:String, scg:List(x:String))">
+                                          <ActivityAction.Argument>
+                                            <DelegateInArgument x:TypeArguments="scg:KeyValuePair(x:String, scg:List(x:String))" Name="Address" />
+                                          </ActivityAction.Argument>
+                                          <Sequence DisplayName="[693782551] Do in Address" sap2010:WorkflowViewState.IdRef="Sequence_52">
+                                            <rac:ForEach x:TypeArguments="x:Object" CurrentIndex="{x:Null}" DisplayName="[906810629] For Each file in processed files" sap2010:WorkflowViewState.IdRef="ForEach`1_17" Values="[ProcessedFiles]">
+                                              <rac:ForEach.Body>
+                                                <ActivityAction x:TypeArguments="x:Object">
+                                                  <ActivityAction.Argument>
+                                                    <DelegateInArgument x:TypeArguments="x:Object" Name="File" />
+                                                  </ActivityAction.Argument>
+                                                  <If Condition="[Address.Value.Contains(File.ToString)]" DisplayName="[014558357] If file was send from address" sap2010:WorkflowViewState.IdRef="If_10">
+                                                    <If.Then>
+                                                      <AddToCollection x:TypeArguments="x:String" Collection="[FilesToSend]" DisplayName="[072126014] AddToCollection&lt;String&gt;" sap2010:WorkflowViewState.IdRef="AddToCollection`1_4" Item="[InOut_Config(&quot;AutomationDirectory&quot;) + &quot;\&quot; + RuntimeFolder + &quot;\&quot; + &quot;ProcessedFiles&quot; + &quot;\&quot; + File.ToString]" />
+                                                    </If.Then>
+                                                  </If>
+                                                </ActivityAction>
+                                              </rac:ForEach.Body>
+                                            </rac:ForEach>
+                                            <Sequence DisplayName="[175778997] Adresses Logging" sap2010:WorkflowViewState.IdRef="Sequence_56">
+                                              <rac:LogMessage DisplayName="[557507630] Log Message" sap2010:WorkflowViewState.IdRef="LogMessage_25" Level="Info" Message="[&quot;Files bellow are going to be send to &quot; + Address.Key]" />
+                                              <rac:ForEach x:TypeArguments="x:Object" CurrentIndex="{x:Null}" DisplayName="[184760048] For Each File in FilesToSend" sap2010:WorkflowViewState.IdRef="ForEach`1_18" Values="[FilesToSend]">
+                                                <rac:ForEach.Body>
+                                                  <ActivityAction x:TypeArguments="x:Object">
+                                                    <ActivityAction.Argument>
+                                                      <DelegateInArgument x:TypeArguments="x:Object" Name="File" />
+                                                    </ActivityAction.Argument>
+                                                    <rac:LogMessage DisplayName="[193833536] Log Message" sap2010:WorkflowViewState.IdRef="LogMessage_23" Level="Info" Message="[&quot;   &quot; + File.ToString]" />
+                                                  </ActivityAction>
+                                                </rac:ForEach.Body>
+                                              </rac:ForEach>
+                                            </Sequence>
+                                            <rac:CommentOut DisplayName="[184356269] Comment Out" sap2010:WorkflowViewState.IdRef="CommentOut_1">
+                                              <rac:CommentOut.Body>
+                                                <Sequence DisplayName="[184358373] Ignored Activities" sap2010:WorkflowViewState.IdRef="Sequence_63">
+                                                  <TryCatch DisplayName="[032937980] Try Send Outlook Mail" sap2010:WorkflowViewState.IdRef="TryCatch_6">
+                                                    <TryCatch.Try>
+                                                      <Sequence DisplayName="[032956204] Send Mail Sequence" sap2010:WorkflowViewState.IdRef="Sequence_59">
+                                                        <ram:SendOutlookMail Bcc="{x:Null}" Cc="{x:Null}" MailMessage="{x:Null}" TimeoutMS="{x:Null}" Account="[InOut_Config(&quot;Account&quot;)]" AttachmentsCollection="[FilesToSend]" Body="[&quot;This message contains files processed by automation performed at &quot; + DateTime.Now().ToString + &quot;.&quot; + vbNewLine + &quot;Please do not respond to this message.&quot;]" DisplayName="[032958187] Send Outlook Mail" sap2010:WorkflowViewState.IdRef="SendOutlookMail_1" IsBodyHtml="False" IsDraft="False" Subject="NOREPLY - Automation Result" To="[Address.Key]">
+                                                          <ram:SendOutlookMail.Files>
+                                                            <scg:List x:TypeArguments="InArgument(x:String)" Capacity="0" />
+                                                          </ram:SendOutlookMail.Files>
+                                                        </ram:SendOutlookMail>
+                                                        <rac:LogMessage DisplayName="[032960223] Log Message" sap2010:WorkflowViewState.IdRef="LogMessage_27" Level="Info" Message="[&quot;Files were successfuly send to &quot; + Address.Key + &quot; !&quot;]" />
+                                                      </Sequence>
+                                                    </TryCatch.Try>
+                                                    <TryCatch.Catches>
+                                                      <Catch x:TypeArguments="s:Exception" sap2010:WorkflowViewState.IdRef="Catch`1_6">
+                                                        <ActivityAction x:TypeArguments="s:Exception">
+                                                          <ActivityAction.Argument>
+                                                            <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                                                          </ActivityAction.Argument>
+                                                          <Sequence DisplayName="[055228049] Sequence" sap2010:WorkflowViewState.IdRef="Sequence_58">
+                                                            <rac:LogMessage DisplayName="[046641570] Log Message" sap2010:WorkflowViewState.IdRef="LogMessage_26" Level="Error" Message="[&quot;Something went wrong!&quot; + vbNewLine + &quot;Error: &quot; + vbNewLine + exception.ToString]" />
+                                                            <rac:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" MessageBoxDuration="{x:Null}" Buttons="Ok" DisplayName="[055230038] Message Box" sap2010:WorkflowViewState.IdRef="MessageBox_15" Text="[&quot;Something went wrong!&quot; + vbNewLine + &quot;Error: &quot; + vbNewLine + exception.ToString]" TopMost="True" />
+                                                          </Sequence>
+                                                        </ActivityAction>
+                                                      </Catch>
+                                                    </TryCatch.Catches>
+                                                  </TryCatch>
+                                                </Sequence>
+                                              </rac:CommentOut.Body>
+                                            </rac:CommentOut>
+                                            <ClearCollection x:TypeArguments="x:String" Collection="[FilesToSend]" DisplayName="[415958892] ClearCollection&lt;String&gt;" sap2010:WorkflowViewState.IdRef="ClearCollection`1_1" />
+                                          </Sequence>
+                                        </ActivityAction>
+                                      </rac:ForEach.Body>
+                                    </rac:ForEach>
+                                  </Sequence>
+                                </If.Then>
+                                <If.Else>
+                                  <Sequence DisplayName="[561008425] Sequence" sap2010:WorkflowViewState.IdRef="Sequence_27">
+                                    <rac:LogMessage DisplayName="[569566581] Log Message" sap2010:WorkflowViewState.IdRef="LogMessage_7" Level="Info" Message="[&quot;No processed files were found in &quot; + InOut_Config(&quot;AttachmentsProcessed&quot;) + &quot; directory.&quot;]" />
+                                  </Sequence>
+                                </If.Else>
+                              </If>
+                            </Sequence>
+                          </FlowStep>
+                        </FlowStep.Next>
+                      </FlowStep>
+                    </FlowStep.Next>
+                  </FlowStep>
+                </FlowStep.Next>
+              </FlowStep>
+            </FlowStep.Next>
+          </FlowStep>
+        </FlowStep.Next>
+      </FlowStep>
+    </Flowchart.StartNode>
+    <x:Reference>__ReferenceID0</x:Reference>
+    <x:Reference>__ReferenceID1</x:Reference>
+    <x:Reference>__ReferenceID2</x:Reference>
+    <x:Reference>__ReferenceID3</x:Reference>
+    <x:Reference>__ReferenceID4</x:Reference>
+    <x:Reference>__ReferenceID5</x:Reference>
+    <sads:DebugSymbol.Symbol>dzpDOlxVc2Vyc1xKYWt1YktvdmFjXEFrYUJvdFxGb3JtUmVjb2duaXplclByb2plY3RcTWFpbi54YW1srQJhA7gFDwIBAWNYY4YBAgEDZDRkrQECAQJoCW0iAwGdA3ANhwEYAwGJA4oBEaUCHAMBigKoAhWxAyADAZkBtAMZtwQkAgE6ugQdpAUoAgEEa2JrcAMBoANqSmpVAwGfA2jDA2jUAwMBngNxD4YBGgMBigOMAVOMAW8DAYwCjQFBjQFEAwGLAo8BE6EBHgMB9gKiAROiAcMBAwH0AqMBE5wCHgMBlwKdAhOkAhgDAY0CqgJgqgKFAQMBmgGsAhf0AiIDAc8B9QIXsAMiAwGbAbcDVLcDngICATu5Axu5A9YBAwGXAboDG7oD7gMDAY8BuwMbtgQpAgE8vgQfzwQqAgEs0AQfowUkAgEFcxN3HgMBkAN/F4IBIgMBiwORAReRAfcDAwH/ApkBG50BJgMB9wKiAY0BogHAAQMB9QKlAReNAiIDAZ0ClQIbmAImAwGYAp0CX50CgQEDAY4CnwIXnwK5AgMBkwKiAheiAooCAwGQAq0CGfMCJAMB0AH2AhmvAyQDAZwBuQOWAbkD0wEDAZgBugPgAboD1QIDAZQBugOGA7oDkwMDAZIBugObA7oDngMDAZEBugO3AboD1QEDAZABuwO9AbsDygEDAY4BwQMhswQsAgE9wAQjwASHAwIBMsgEJ8sEMgIBLdAEoQHQBMIBAgEG0gQjnAUuAgELnwUjoQUuAgEHdBV0ogIDAZkDdRV1ngIDAZUDdhV2pwIDAZEDgAEZgAHbAgMBjgOBARmBAa8DAwGMA5EBtgORAfQDAwGHA5EBUJEBdQMBhQORAbEBkQHfAQMBhAORAYIDkQGWAwMBggORAb4CkQHmAgMBgAOaAR2aAfwCAwH9ApsBHZsB0AMDAfsCnAEdnAGtAQMB+AKmARnxAScDAbAC8gEZjAIkAwGeApYCHZYCpQIDAZsClwIdlwL5AgMBmQKfApEBnwK2AgMBlAKiApEBogKHAgMBkQKvAh3jAigDAdkB6wIh7wIsAwHRAfgCHaADKAMBogGoAyGrAywDAZ0BxwMjxwPoDQMBiwHIAyPIA+0NAwGIAckDI8kDjAIDAYYBygMjygOcAwMBgQHLAyOyBC4CAT7ABGfABOUBAgE3wASaAsAErAICATXABLQCwAS3AgIBNMAEPsAEXAIBM8kEKckEjQICATDKBCnKBOQCAgEu1ARe1AR9AgEM1gQlmwUzAgENoAUloAWeAgIBCHSmAXSfAgMBmgN1pwF1mwIDAZYDdqYBdqQCAwGSA4ABlQGAAdgCAwGPA4EB2gGBAZ0DAwGNA5oBmAGaAfkCAwH+ApsB3QGbAb4DAwH8ApwBZ5wBdAMB+QKmAbEDpgHFAwMB8gKsAR/uASoDAbEC8wEb8wG7AQMBrgL0ARuLAikDAZ8ClgKYAZYCogIDAZwClwLdAZcC5wIDAZoCswIf4QIxAwHcAeICH+IC1AEDAdoB7AIj7AKdAgMB1wHtAiPtAvECAwHVAe4CI+4CswEDAdIB+QIfngMxAwGlAZ8DH58D2AEDAaMBqQMjqQOqAgMBoAGqAyOqA/4CAwGeAccDQccDTgMBjAHIA0HIA04DAYkByQPkAckD+gEDAYcBygPWAcoD3QEDAYUBygPnAcoD6AIDAYQBygOVAcoDowEDAYIB0gMl0gP/AQIBfNMDJdMDvAICAXjUAyXUA6cCAgF01QMlsQQzAgE/yQSiAckEigICATHKBOoBygTSAgIBL9YE8gHWBIoCAgEq3AQrmAU2AgEOoAWfAaAFmwICAQmtASHsASYDAbkC7QEh7QGbBAMBsgLzAZYB8wG4AQMBrwL0Ab4B9AHbAQMBrAL6ASGIAiwDAaACswKMAbMCyQEDAYkCuQIl3gIwAwHdAeICmgHiAtEBAwHbAewCnwHsApoCAwHYAe0C5AHtAt8CAwHWAe4Cbe4CegMB0wH5AowB+QLJAQMBzgH/AiWbAzADAaYBnwOaAZ8D1QEDAaQBqQOfAakDpwIDAaEBqgPkAaoD7AIDAZ8B0gPuAdID/AECAX/SA84B0gPiAQIBfdMD+AHTA7kCAgF70wPaAdMD7AECAXnUA8QB1APXAQIBdtQD4wHUA6QCAgF11QPRAtUD5AICAXPbAyuuBDYCAUDdBC3qBDsCAR3rBC33BDgCARP4BC2WBT4CARKXBS2XBeQBAgEPrQHoA60BqwQDAboCrwElxAEzAwHcAscBJeoBMwMBvQLtAY0E7QGYBAMBtwLtAbcC7QHHAgMBtgLtAdMC7QHMAwMBswL7ASP7AegBAwGpAvwBI4cCMQMBoQK6Aie6AusBAwGHArsCJ90CMgMB3gGAAyeAA9kBAwHMAYEDJ5oDMgMBpwHfAy3fA6ICAgFv4AMtrQQ7AgFB3QTeAd0E8AECASnjBDPnBDgCAR7sBC/sBPABAgEa7QQv9gQ9AgEUlwVklwVzAgEQrwHlAa8B/AEDAfACtQErwQE2AwHdAscB/APHAZMEAwHaAs0BK+cBNgMBvgL7AZ4B+wHlAQMBqgL8AcYB/AHoAQMBpgKCAimEAjQDAaICugKiAboC6AEDAYgCwAIpwALnAQMBgwLBAinBAocDAwH7AcICKdwCNwMB3wGAA6IBgAPWAQMBzQGFAymFA+0BAwHIAYYDKZkDNwMBqAHfA/EB3wOfAgIBct8D1gHfA+UBAgFw4APgAeAD9gECAW3mAzOqBD4CAULjBEHjBGoCAR/lBDflBJIDAgEi7ASqAewE7QECARvtBNwB7QTrAQIBGPMENfME1gECARW2AS3AATIDAd4CzgEt5gEyAwG/AoMCK4MC4gEDAaMCwALLAcAC5AEDAYYCwAKvAcACvwEDAYQCwQJtwQLmAQMBgALBApoCwQKsAgMB/gHBArQCwQK3AgMB/QHBAkTBAmIDAfwBwgLdAcIC7wEDAfoByAIv2QI6AwHgAYUD0gGFA+oBAwHLAYUDrgGFA8YBAwHJAYYD6AGGA4MCAwHGAYwDL5YDOgMBqQHnAzWpBEACAUPlBG7lBH0CASflBPEB5QSPAwIBI/MEsAHzBNMBAgEWtgE7tgHTAQMB3wK4ATG+ATwDAeQCzgE7zgHTAQMBwALQATHkATYDAcUCgwKmAYMC3wEDAaQCywJgywKYAgMB4QHNAjHNAscEAwHvAc4CMc4C5QEDAe0BzwIxzwL2AgMB6AHQAjHXAjoDAeQB2AIx2AKHAgMB4gGRAzGRA7UEAwG9AZIDMZIDnQEDAbsBkwMxkwPQAgMBtgGUAzGUA40EAwGvAZUDMZUD1QIDAaoB6QM5mwREAgFHowQ9pQRIAgFEuQEzvQE4AwHlAtAB+AHQAbsCAwHGAtIBNdYBOgMBzwLZATXiAUADAckCzQKlA80CrgQDAfUBzQL5As0CiQMDAfMBzQK2BM0CxAQDAfEBzQKPA80CmQMDAfABzgKuAc4CuAEDAe4BzwLmAs8C8wIDAesBzwLQAs8C3gIDAekB1QJc1QJnAwHmAdICXdICgQEDAeUB2AKsAdgChAIDAeMBkQPZA5EDlAQDAcMBkQOYA5EDsAMDAcEBkQOcBJEDsgQDAb8BkQO2A5EDzQMDAb4BkgNmkgNwAwG8AZMDvQKTA80CAwG5AZMDnwKTA7UCAwG3AZQDzAGUA9MBAwG1AZQDqQOUA4oEAwG0AZQD3QGUA/ECAwGwAZUDrAGVA9ICAwGrAeoDO5oEQAIBSKQEP6QEyAICAUW5AeoBuQHNAgMB5gK7ATe7Ab0CAwHqAtIB7AHSAc8CAwHQAtQBOdQBvwIDAdQC2gE34QFAAwHKAuoDSeoDZgIBSewDP4kESgIBUYwEP5gESgIBS6QEgAKkBLYCAgFGuwFuuwGqAQMB7QK7AZ4CuwG6AgMB6wLUAXDUAawBAwHXAtQBoALUAbwCAwHVAt8BbN8BmAEDAc4C3AFt3AGiAQMBywLxA0HxA7YCAgFp8gNB8gOgAgIBZfMDQYgETwIBUpAEQZAEvAICAU2RBEGXBFICAUzxA/8B8QOzAgIBbPED6gHxA/MBAgFq8gPPAfID3gECAWfyA+oB8gOdAgIBZvMD7gHzA/0BAgFk+QNHhQRSAgFTkASRApAEuQICAVCQBOsBkASFAgIBToEESYEEvgICAWCCBEmCBNACAgFcgwRJgwTKAgIBWIQESYQExQICAVSBBIkCgQS7AgIBY4EE8gGBBP0BAgFhggScAoIEzQICAV+CBP8BggSQAgIBXYMEkQKDBMcCAgFbgwTvAYMEhQICAVmEBIwChATCAgIBV4QE8QGEBIACAgFV</sads:DebugSymbol.Symbol>
+  </Flowchart>
+  <sap2010:WorkflowViewState.ViewStateManager>
+    <sap2010:ViewStateManager>
+      <sap2010:ViewStateData Id="InvokeWorkflowFile_3" sap:VirtualizedContainerService.HintSize="200,188">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="CreateDirectory_1" sap:VirtualizedContainerService.HintSize="200,22" />
+      <sap2010:ViewStateData Id="CreateDirectory_3" sap:VirtualizedContainerService.HintSize="200,22" />
+      <sap2010:ViewStateData Id="CreateDirectory_2" sap:VirtualizedContainerService.HintSize="200,22" />
+      <sap2010:ViewStateData Id="Sequence_61" sap:VirtualizedContainerService.HintSize="222,270">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="LogMessage_29" sap:VirtualizedContainerService.HintSize="314,93" />
+      <sap2010:ViewStateData Id="MessageBox_16" sap:VirtualizedContainerService.HintSize="314,59" />
+      <sap2010:ViewStateData Id="Sequence_62" sap:VirtualizedContainerService.HintSize="336,316">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Catch`1_7" sap:VirtualizedContainerService.HintSize="404,22">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="TryCatch_7" sap:VirtualizedContainerService.HintSize="418,502" />
+      <sap2010:ViewStateData Id="Sequence_60" sap:VirtualizedContainerService.HintSize="200,124">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="GetOutlookMailMessages_1" sap:VirtualizedContainerService.HintSize="200,22" />
+      <sap2010:ViewStateData Id="LogMessage_4" sap:VirtualizedContainerService.HintSize="314,91" />
+      <sap2010:ViewStateData Id="MessageBox_9" sap:VirtualizedContainerService.HintSize="314,59" />
+      <sap2010:ViewStateData Id="TerminateWorkflow_1" sap:VirtualizedContainerService.HintSize="314,22" />
+      <sap2010:ViewStateData Id="Sequence_22" sap:VirtualizedContainerService.HintSize="336,376">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Catch`1_2" sap:VirtualizedContainerService.HintSize="404,22">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="TryCatch_2" sap:VirtualizedContainerService.HintSize="1668,364">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="LogMessage_2" sap:VirtualizedContainerService.HintSize="1668,93" />
+      <sap2010:ViewStateData Id="AddToCollection`1_2" sap:VirtualizedContainerService.HintSize="200,22" />
+      <sap2010:ViewStateData Id="If_8" sap:VirtualizedContainerService.HintSize="464,266">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Sequence_51" sap:VirtualizedContainerService.HintSize="486,390">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="If_5" sap:VirtualizedContainerService.HintSize="611,540" />
+      <sap2010:ViewStateData Id="Sequence_30" sap:VirtualizedContainerService.HintSize="633,664">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="ForEach`1_7" sap:VirtualizedContainerService.HintSize="649,799" />
+      <sap2010:ViewStateData Id="AddToCollection`1_3" sap:VirtualizedContainerService.HintSize="200,22" />
+      <sap2010:ViewStateData Id="If_9" sap:VirtualizedContainerService.HintSize="464,266">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Assign_1" sap:VirtualizedContainerService.HintSize="242,60" />
+      <sap2010:ViewStateData Id="Sequence_47" sap:VirtualizedContainerService.HintSize="264,184">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="If_7" sap:VirtualizedContainerService.HintSize="753,456">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="If_6" sap:VirtualizedContainerService.HintSize="878,606" />
+      <sap2010:ViewStateData Id="Sequence_39" sap:VirtualizedContainerService.HintSize="900,730">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="ForEach`1_12" sap:VirtualizedContainerService.HintSize="916,905">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="If_3" sap:VirtualizedContainerService.HintSize="1590,1143">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="SaveMailAttachments_1" sap:VirtualizedContainerService.HintSize="1590,159">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Sequence_34" sap:VirtualizedContainerService.HintSize="1612,1506">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="ForEach`1_3" sap:VirtualizedContainerService.HintSize="1628,1697">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="LogMessage_17" sap:VirtualizedContainerService.HintSize="390,93" />
+      <sap2010:ViewStateData Id="LogMessage_14" sap:VirtualizedContainerService.HintSize="352,93" />
+      <sap2010:ViewStateData Id="LogMessage_15" sap:VirtualizedContainerService.HintSize="314,93" />
+      <sap2010:ViewStateData Id="Sequence_36" sap:VirtualizedContainerService.HintSize="336,217">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="ForEach`1_11" sap:VirtualizedContainerService.HintSize="352,352" />
+      <sap2010:ViewStateData Id="Sequence_37" sap:VirtualizedContainerService.HintSize="374,609">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="ForEach`1_10" sap:VirtualizedContainerService.HintSize="390,744" />
+      <sap2010:ViewStateData Id="Sequence_40" sap:VirtualizedContainerService.HintSize="1628,1057">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Sequence_35" sap:VirtualizedContainerService.HintSize="1650,2918">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="LogMessage_1" sap:VirtualizedContainerService.HintSize="314,93" />
+      <sap2010:ViewStateData Id="MessageBox_8" sap:VirtualizedContainerService.HintSize="314,59" />
+      <sap2010:ViewStateData Id="Sequence_20" sap:VirtualizedContainerService.HintSize="336,316">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Catch`1_1" sap:VirtualizedContainerService.HintSize="1654,22">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="TryCatch_1" sap:VirtualizedContainerService.HintSize="1668,3150" />
+      <sap2010:ViewStateData Id="LogMessage_3" sap:VirtualizedContainerService.HintSize="314,93" />
+      <sap2010:ViewStateData Id="LogMessage_5" sap:VirtualizedContainerService.HintSize="314,93" />
+      <sap2010:ViewStateData Id="If_1" sap:VirtualizedContainerService.HintSize="1668,267">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Sequence_12" sap:VirtualizedContainerService.HintSize="200,172">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="LogMessage_33" sap:VirtualizedContainerService.HintSize="374,93" />
+      <sap2010:ViewStateData Id="LoadScript_2" sap:VirtualizedContainerService.HintSize="352,59" />
+      <sap2010:ViewStateData Id="GetFiles_2" sap:VirtualizedContainerService.HintSize="352,22" />
+      <sap2010:ViewStateData Id="InvokeMethod_2" sap:VirtualizedContainerService.HintSize="314,158">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Delay_2" sap:VirtualizedContainerService.HintSize="314,62">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="GetObject`1_1" sap:VirtualizedContainerService.HintSize="314,94">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Assign_2" sap:VirtualizedContainerService.HintSize="314,60" />
+      <sap2010:ViewStateData Id="LogMessage_30" sap:VirtualizedContainerService.HintSize="314,93" />
+      <sap2010:ViewStateData Id="Sequence_66" sap:VirtualizedContainerService.HintSize="336,751">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="ForEach`1_13" sap:VirtualizedContainerService.HintSize="352,885" />
+      <sap2010:ViewStateData Id="Sequence_65" sap:VirtualizedContainerService.HintSize="374,1170">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Sequence_69" sap:VirtualizedContainerService.HintSize="396,1427">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="PythonScope_1" sap:VirtualizedContainerService.HintSize="414,1503" />
+      <sap2010:ViewStateData Id="LogMessage_32" sap:VirtualizedContainerService.HintSize="414,93" />
+      <sap2010:ViewStateData Id="Sequence_44" sap:VirtualizedContainerService.HintSize="436,1760">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="LogMessage_18" sap:VirtualizedContainerService.HintSize="314,93" />
+      <sap2010:ViewStateData Id="MessageBox_14" sap:VirtualizedContainerService.HintSize="314,59" />
+      <sap2010:ViewStateData Id="TerminateWorkflow_2" sap:VirtualizedContainerService.HintSize="314,22" />
+      <sap2010:ViewStateData Id="Sequence_42" sap:VirtualizedContainerService.HintSize="336,378">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Catch`1_5" sap:VirtualizedContainerService.HintSize="440,22">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="TryCatch_5" sap:VirtualizedContainerService.HintSize="454,2032">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Sequence_74" sap:VirtualizedContainerService.HintSize="476,2156">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="LogMessage_36" sap:VirtualizedContainerService.HintSize="374,93" />
+      <sap2010:ViewStateData Id="LoadScript_3" sap:VirtualizedContainerService.HintSize="352,59" />
+      <sap2010:ViewStateData Id="InvokeMethod_3" sap:VirtualizedContainerService.HintSize="314,158">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Delay_3" sap:VirtualizedContainerService.HintSize="314,22" />
+      <sap2010:ViewStateData Id="GetObject`1_2" sap:VirtualizedContainerService.HintSize="314,62">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="WriteTextFile_1" sap:VirtualizedContainerService.HintSize="314,111">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="LogMessage_37" sap:VirtualizedContainerService.HintSize="314,93" />
+      <sap2010:ViewStateData Id="Sequence_71" sap:VirtualizedContainerService.HintSize="336,730">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="ForEach`1_21" sap:VirtualizedContainerService.HintSize="352,864" />
+      <sap2010:ViewStateData Id="Sequence_70" sap:VirtualizedContainerService.HintSize="374,1087">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Sequence_73" sap:VirtualizedContainerService.HintSize="396,1344">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="PythonScope_2" sap:VirtualizedContainerService.HintSize="414,1420" />
+      <sap2010:ViewStateData Id="LogMessage_38" sap:VirtualizedContainerService.HintSize="414,93" />
+      <sap2010:ViewStateData Id="Sequence_68" sap:VirtualizedContainerService.HintSize="436,1677">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="LogMessage_31" sap:VirtualizedContainerService.HintSize="314,93" />
+      <sap2010:ViewStateData Id="MessageBox_17" sap:VirtualizedContainerService.HintSize="314,59" />
+      <sap2010:ViewStateData Id="Sequence_67" sap:VirtualizedContainerService.HintSize="336,316">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Catch`1_8" sap:VirtualizedContainerService.HintSize="440,22">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="TryCatch_8" sap:VirtualizedContainerService.HintSize="454,1965">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Sequence_75" sap:VirtualizedContainerService.HintSize="476,2089">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Sequence_13" sap:VirtualizedContainerService.HintSize="200,156">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="LogMessage_41" sap:VirtualizedContainerService.HintSize="1013,93" />
+      <sap2010:ViewStateData Id="GetFiles_3" sap:VirtualizedContainerService.HintSize="1013,94">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="BuildDataTable_1" sap:VirtualizedContainerService.HintSize="975,59" />
+      <sap2010:ViewStateData Id="BuildDataTable_2" sap:VirtualizedContainerService.HintSize="975,59" />
+      <sap2010:ViewStateData Id="MessageBox_24" sap:VirtualizedContainerService.HintSize="975,59" />
+      <sap2010:ViewStateData Id="ReadTextFile_1" sap:VirtualizedContainerService.HintSize="975,83">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="DeserializeJson`1_1" sap:VirtualizedContainerService.HintSize="953,59" />
+      <sap2010:ViewStateData Id="DeserializeJson`1_2" sap:VirtualizedContainerService.HintSize="953,59" />
+      <sap2010:ViewStateData Id="DeserializeJsonArray_1" sap:VirtualizedContainerService.HintSize="953,59" />
+      <sap2010:ViewStateData Id="DeserializeJson`1_5" sap:VirtualizedContainerService.HintSize="915,59" />
+      <sap2010:ViewStateData Id="DeserializeJson`1_6" sap:VirtualizedContainerService.HintSize="352,59" />
+      <sap2010:ViewStateData Id="DeserializeJsonArray_3" sap:VirtualizedContainerService.HintSize="352,59" />
+      <sap2010:ViewStateData Id="DeserializeJson`1_7" sap:VirtualizedContainerService.HintSize="314,59" />
+      <sap2010:ViewStateData Id="DeserializeJson`1_8" sap:VirtualizedContainerService.HintSize="314,59" />
+      <sap2010:ViewStateData Id="DeserializeJson`1_9" sap:VirtualizedContainerService.HintSize="314,59" />
+      <sap2010:ViewStateData Id="DeserializeJson`1_10" sap:VirtualizedContainerService.HintSize="314,59" />
+      <sap2010:ViewStateData Id="Sequence_93" sap:VirtualizedContainerService.HintSize="336,480">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="ForEach`1_25" sap:VirtualizedContainerService.HintSize="352,615" />
+      <sap2010:ViewStateData Id="Sequence_89" sap:VirtualizedContainerService.HintSize="374,937">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="DeserializeJson`1_11" sap:VirtualizedContainerService.HintSize="416,59" />
+      <sap2010:ViewStateData Id="AddDataRow_1" sap:VirtualizedContainerService.HintSize="200,22" />
+      <sap2010:ViewStateData Id="Sequence_94" sap:VirtualizedContainerService.HintSize="222,146">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="CommentOut_13" sap:VirtualizedContainerService.HintSize="416,224" />
+      <sap2010:ViewStateData Id="Sequence_90" sap:VirtualizedContainerService.HintSize="438,447">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="If_12" sap:VirtualizedContainerService.HintSize="837,1087" />
+      <sap2010:ViewStateData Id="Sequence_91" sap:VirtualizedContainerService.HintSize="859,1211">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="MessageBox_23" sap:VirtualizedContainerService.HintSize="314,59" />
+      <sap2010:ViewStateData Id="Sequence_92" sap:VirtualizedContainerService.HintSize="336,183">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Catch`1_9" sap:VirtualizedContainerService.HintSize="863,22">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="TryCatch_9" sap:VirtualizedContainerService.HintSize="877,1531">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Sequence_88" sap:VirtualizedContainerService.HintSize="899,1655">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="ForEach`1_24" sap:VirtualizedContainerService.HintSize="915,1790" />
+      <sap2010:ViewStateData Id="Sequence_86" sap:VirtualizedContainerService.HintSize="937,2013">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="ForEach`1_23" sap:VirtualizedContainerService.HintSize="953,2172">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Sequence_80" sap:VirtualizedContainerService.HintSize="975,2617">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Sequence_79" sap:VirtualizedContainerService.HintSize="997,3161">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="ForEach`1_22" sap:VirtualizedContainerService.HintSize="1013,3296" />
+      <sap2010:ViewStateData Id="Sequence_76" sap:VirtualizedContainerService.HintSize="1035,3711">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="GetFiles_1" sap:VirtualizedContainerService.HintSize="200,22" />
+      <sap2010:ViewStateData Id="LogMessage_8" sap:VirtualizedContainerService.HintSize="314,93" />
+      <sap2010:ViewStateData Id="MessageBox_12" sap:VirtualizedContainerService.HintSize="314,59" />
+      <sap2010:ViewStateData Id="Sequence_28" sap:VirtualizedContainerService.HintSize="336,316">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Catch`1_3" sap:VirtualizedContainerService.HintSize="404,22">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="TryCatch_3" sap:VirtualizedContainerService.HintSize="901,292" />
+      <sap2010:ViewStateData Id="AddToCollection`1_4" sap:VirtualizedContainerService.HintSize="200,22" />
+      <sap2010:ViewStateData Id="If_10" sap:VirtualizedContainerService.HintSize="464,208" />
+      <sap2010:ViewStateData Id="ForEach`1_17" sap:VirtualizedContainerService.HintSize="480,342" />
+      <sap2010:ViewStateData Id="LogMessage_25" sap:VirtualizedContainerService.HintSize="330,91" />
+      <sap2010:ViewStateData Id="LogMessage_23" sap:VirtualizedContainerService.HintSize="314,91" />
+      <sap2010:ViewStateData Id="ForEach`1_18" sap:VirtualizedContainerService.HintSize="330,225" />
+      <sap2010:ViewStateData Id="Sequence_56" sap:VirtualizedContainerService.HintSize="480,480">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="SendOutlookMail_1" sap:VirtualizedContainerService.HintSize="314,145" />
+      <sap2010:ViewStateData Id="LogMessage_27" sap:VirtualizedContainerService.HintSize="314,91" />
+      <sap2010:ViewStateData Id="Sequence_59" sap:VirtualizedContainerService.HintSize="336,400">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="LogMessage_26" sap:VirtualizedContainerService.HintSize="314,91" />
+      <sap2010:ViewStateData Id="MessageBox_15" sap:VirtualizedContainerService.HintSize="314,59" />
+      <sap2010:ViewStateData Id="Sequence_58" sap:VirtualizedContainerService.HintSize="336,314">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Catch`1_6" sap:VirtualizedContainerService.HintSize="404,21">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="TryCatch_6" sap:VirtualizedContainerService.HintSize="418,627" />
+      <sap2010:ViewStateData Id="Sequence_63" sap:VirtualizedContainerService.HintSize="440,751">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="CommentOut_1" sap:VirtualizedContainerService.HintSize="480,829" />
+      <sap2010:ViewStateData Id="ClearCollection`1_1" sap:VirtualizedContainerService.HintSize="480,22" />
+      <sap2010:ViewStateData Id="Sequence_52" sap:VirtualizedContainerService.HintSize="502,1917">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="ForEach`1_15" sap:VirtualizedContainerService.HintSize="518,2051" />
+      <sap2010:ViewStateData Id="Sequence_26" sap:VirtualizedContainerService.HintSize="540,2175">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="LogMessage_7" sap:VirtualizedContainerService.HintSize="314,91" />
+      <sap2010:ViewStateData Id="Sequence_27" sap:VirtualizedContainerService.HintSize="336,215">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="If_2" sap:VirtualizedContainerService.HintSize="901,2348">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Sequence_14" sap:VirtualizedContainerService.HintSize="200,188">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="FlowStep_1">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <av:Point x:Key="ShapeLocation">160,1114</av:Point>
+            <av:Size x:Key="ShapeSize">200,188</av:Size>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="FlowStep_9">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <av:Point x:Key="ShapeLocation">320,956</av:Point>
+            <av:Size x:Key="ShapeSize">200,108</av:Size>
+            <av:PointCollection x:Key="ConnectorLocation">420,1064 420,1094 260,1094 260,1114</av:PointCollection>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="FlowStep_2">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <av:Point x:Key="ShapeLocation">190,742</av:Point>
+            <av:Size x:Key="ShapeSize">200,156</av:Size>
+            <av:PointCollection x:Key="ConnectorLocation">290,898 290,928 420,928 420,956</av:PointCollection>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="FlowStep_3">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <av:Point x:Key="ShapeLocation">200,524</av:Point>
+            <av:Size x:Key="ShapeSize">200,172</av:Size>
+            <av:PointCollection x:Key="ConnectorLocation">300,696 300,726 290,726 290,742</av:PointCollection>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="FlowStep_8">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <av:Point x:Key="ShapeLocation">200,374.5</av:Point>
+            <av:Size x:Key="ShapeSize">200,124</av:Size>
+            <av:PointCollection x:Key="ConnectorLocation">300,498.5 300,524</av:PointCollection>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="FlowStep_6">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <av:Point x:Key="ShapeLocation">200,136</av:Point>
+            <av:Size x:Key="ShapeSize">200,188</av:Size>
+            <av:PointCollection x:Key="ConnectorLocation">300,324 300,374.5</av:PointCollection>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Flowchart_1" sap:VirtualizedContainerService.HintSize="620,1338">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <av:Point x:Key="ShapeLocation">270,2.5</av:Point>
+            <av:Size x:Key="ShapeSize">60,75</av:Size>
+            <av:PointCollection x:Key="ConnectorLocation">300,77.5 300,136</av:PointCollection>
+            <x:Double x:Key="Height">1302</x:Double>
+            <x:Double x:Key="Width">606</x:Double>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Main_1" sap:VirtualizedContainerService.HintSize="660,1282" />
+    </sap2010:ViewStateManager>
+  </sap2010:WorkflowViewState.ViewStateManager>
+</Activity>

@@ -1,0 +1,18 @@
+{
+  "Name": "FormRecognizerProject",
+  "Description": "General Business Process",
+  "ReleaseNotes": null,
+  "MainWorkflow": "Main.xaml",
+  "Dependencies": {},
+  "ExcludedData": [
+    "Private:*",
+    "*password*"
+  ],
+  "ToolVersion": "2.0.5.0",
+  "ProjectVersion": "0.0.0.0",
+  "PackOptions": {},
+  "RuntimeOptions": {},
+  "ProjectDirectory": "C:\\Users\\JakubKovac\\AkaBot\\FormRecognizerProject",
+  "ProjectFilePath": "C:\\Users\\JakubKovac\\AkaBot\\FormRecognizerProject\\project.json",
+  "ScreenshotsFolder": "C:\\Users\\JakubKovac\\AkaBot\\FormRecognizerProject\\.screenshots"
+}
